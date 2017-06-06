@@ -1,0 +1,14 @@
+applications:
+- name: FoodTracker
+  random-route: true
+  memory: 128M
+  instances: 1
+  disk_quota: 1024M
+  buildpack: swift_buildpack
+  command: FoodTracker --bind 0.0.0.0:$PORT
+  env:
+    OPENAPI_SPEC: "/swagger/api"
+  services:
+  - crudDataStore
+  - FoodTracker-AutoScaling-k3f9
+  timeout: 180
